@@ -1,0 +1,1 @@
+console.log("github með einhver leiðindi þvi skjalið var tómt");
