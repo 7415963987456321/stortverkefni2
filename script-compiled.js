@@ -34,25 +34,69 @@ var Myndband = function () {
   }
 
   function constructor(data) {
+    container = document.querySelector('body');
+    this.dataSet = data;
     for (var i = 0; i < 3; i++) {
-      Categories(data.categories[i].title, data.categories[i].videos);
+      Categories(i, data.categories[i].title, data.categories[i].videos);
     }
   }
 
-  function Categories(title, videos) {
+  function Categories(i, title, videos) {
     container = document.querySelector('body');
-    console.log(title);
-    console.log(videos);
 
     const sec = document.createElement('section');
     sec.className = 'Category__' + title;
+
     const div = document.createElement('div');
     div.className = 'Videos';
     sec.appendChild(div);
+
     const h2 = document.createElement('h2');
     h2.appendChild(document.createTextNode(title));
     div.appendChild(h2);
+
     container.appendChild(sec);
+
+    for (var z = 0; z < videos.length; z++) {
+      videolist = document.querySelectorAll('.Videos')[i];
+      videolist.appendChild(Videos(videos[z]));
+    }
+  }
+
+  function Videos(id) {
+
+    const title = dataSet.videos[id - 1].title;
+    const poster = dataSet.videos[id - 1].poster;
+    const videoURL = dataSet.videos[id - 1].video;
+    const duration = durationCalc(dataSet.videos[id - 1].duration);
+
+    const div = document.createElement('div');
+    div.className = 'Video';
+
+    const img = document.createElement('img');
+    img.src = poster;
+
+    div.appendChild(img);
+
+    const h3 = document.createElement('h3');
+    h3.appendChild(document.createTextNode(title));
+    h3.className = 'videoTitle';
+    div.appendChild(h3);
+
+    const p = document.createElement('p');
+    p.className = 'duration';
+    p.appendChild(document.createTextNode(duration));
+    div.appendChild(p);
+
+    return div;
+  }
+
+  function durationCalc(duration) {
+
+    const sec = Math.floor(duration % 60);
+    const min = Math.floor(duration / 60);
+    const string = min + " min : " + sec + " sec";
+    return string;
   }
   return {
     init: init
