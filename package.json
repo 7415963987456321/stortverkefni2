@@ -6,9 +6,10 @@
   "scripts": {
     "sass": "node-sass scss/styles.scss styles.css",
     "browser-sync": "browser-sync start --server --files *.js *.scss *.html index.html",
-    "dev": "npm-run-all --parallel babel sass browser-sync",
+    "dev": "npm-run-all --parallel babel babel2 sass browser-sync",
     "lint": "stylelint *.scss scss/*.scss --syntax scss",
-    "babel": "babel script.js --watch --out-file script-compiled.js --source-maps"
+    "babel": "babel script.js  --watch --out-file script-compiled.js  --source-maps",
+    "babel2": "babel videoplayer.js --watch --out-file videoplayer-compiled.js --source-maps"
   },
   "repository": {
     "type": "git",
