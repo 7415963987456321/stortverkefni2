@@ -175,14 +175,13 @@ const Videoplayer = (function() {
   }
 
   function fullscreenReq(){
-    //TODO!
-    //Hér vantar einhverja lógik til að kanna vendor-id
-    vidPlayer.webkitRequestFullscreen();
-    vidPlayer.webkitRequestFullscreen();
-    vidPlayer.mozRequestFullScreen();
-    vidPlayer.msRequestFullscreen(); 
-    vidPlayer.webkitRequestFullscreen();
-    vidPlayer.webkitRequestFullscreen();
+    if(vidPlayer.webkitRequestFullscreen){
+      vidPlayer.webkitRequestFullscreen();
+    }else if(vidPlayer.mozRequestFullScreen){
+      vidPlayer.mozRequestFullScreen();
+    }else if(vidPlayer.msRequestFullscreen){
+      vidPlayer.msRequestFullscreen(); 
+    }
   }
 
   function muteOnOff(){
