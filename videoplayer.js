@@ -42,7 +42,7 @@ const Videoplayer = (function() {
     let queryId = parseInt(window.location.search.substring(4));
     //console.log(data.videos.find(item => item.id === queryId));
     
-    container.appendChild(getVideo(queryId))
+    container.appendChild(getVideo(queryId));
   }
 
   function header(){
@@ -63,64 +63,134 @@ const Videoplayer = (function() {
     const duration = durationCalc(dataSet.videos[id-1].duration);
 
     const div = document.createElement('div');
-    div.className = 'video'
+    div.className = 'video';
 
     const titill = document.createElement('div');
-    titill.className = 'videoTitle'
-    div.appendChild(titill)
+    titill.className = 'videoTitle';
+    div.appendChild(titill);
 
     const h1 = document.createElement('h1');
-    h1.className = 'title__h1'
-    h1.appendChild(document.createTextNode(title))
-    titill.appendChild(h1)
+    h1.className = 'title__h1';
+    h1.appendChild(document.createTextNode(title));
+    titill.appendChild(h1);
     
     const videoDiv = document.createElement('div');
     videoDiv.className = 'videoPlayer';
     
-    const vidPlayer = document.createElement('video');
+    this.vidPlayer = document.createElement('video');
     vidPlayer.src = videoURL;
     videoDiv.appendChild(vidPlayer);
-    div.appendChild(videoDiv)
+    div.appendChild(videoDiv);
 
-    div.appendChild(buttonList())
+    div.appendChild(buttonList());
     vidPlayer.play();
 
     return div;
     }
+
   function buttonList(){
     const buttonList = document.createElement('div');
     buttonList.className = 'buttonList';
 
+  //Play takki
     const play = document.createElement('button');
     const playImg = document.createElement('img');
-    playImg.src = '/img/play.svg'
-    play.appendChild(playImg)
-    play.id = 'playButton'
+    playImg.src = '/img/play.svg';
+    playImg.id = 'play';
+    play.appendChild(playImg);
+    play.id = 'playButton';
+
+    play.addEventListener('click', function () {
+      playPause();
+    });
     
+  //Forward takki
     const forward = document.createElement('button');
     const forwardImg = document.createElement('img');
-    forwardImg.src = '/img/next.svg'
-    forward.appendChild(forwardImg)
-    forward.id = 'forwardButton'
-    
+    forwardImg.src = '/img/next.svg';
+    forward.appendChild(forwardImg);
+    forward.id = 'forwardButton';
+
+    forward.addEventListener('click', function () {
+      forwardSeek();
+    });
+
+  //Fullscreen takki
     const fullscreen = document.createElement('button');
     const fullscreenImg = document.createElement('img');
-    fullscreenImg.src = '/img/fullscreen.svg'
-    fullscreen.appendChild(fullscreenImg)
-    fullscreen.id = 'fullscreenButton'
+    fullscreenImg.src = '/img/fullscreen.svg';
+    fullscreen.appendChild(fullscreenImg);
+    fullscreen.id = 'fullscreenButton';
+    
+    fullscreen.addEventListener('click', function () {
+      fullscreenReq();
+    });
+    
+  //Mute takki
+    const mute = document.createElement('button');
+    const muteImg = document.createElement('img');
+    muteImg.src = '/img/mute.svg';
+    mute.appendChild(muteImg);
+    mute.id = 'fullscreenButton';
+    
+    mute.addEventListener('click', function () {
+      muteOnOff();
+    });
 
+  //Backward takki
     const backward = document.createElement('button');
     const backwardImg = document.createElement('img');
-    backwardImg.src = '/img/back.svg'
-    backward.appendChild(backwardImg)
-    backward.id = 'backwardButton'
+    backwardImg.src = '/img/back.svg';
+    backward.appendChild(backwardImg);
+    backward.id = 'backwardButton';
 
+     backward.addEventListener('click', function () {
+      backwardSeek();
+    });
+
+  //Append á container
     buttonList.appendChild(backward);
     buttonList.appendChild(play);
     buttonList.appendChild(fullscreen);
+    buttonList.appendChild(mute);
     buttonList.appendChild(forward);
 
     return buttonList;
+  }
+
+  function playPause(){
+    if (vidPlayer.paused){
+      vidPlayer.play();
+      } else {
+        vidPlayer.pause();
+      }
+  }
+
+  function forwardSeek(){
+    vidPlayer.currentTime +=3;
+  }
+
+  function backwardSeek(){
+    vidPlayer.currentTime -=3;
+  }
+
+  function fullscreenReq(){
+    //TODO!
+    //Hér vantar einhverja lógik til að kanna vendor-id
+    vidPlayer.webkitRequestFullscreen();
+    vidPlayer.webkitRequestFullscreen();
+    vidPlayer.mozRequestFullScreen();
+    vidPlayer.msRequestFullscreen(); 
+    vidPlayer.webkitRequestFullscreen();
+    vidPlayer.webkitRequestFullscreen();
+  }
+
+  function muteOnOff(){
+    if(vidPlayer.muted){
+      vidPlayer.muted = false;
+    } else {
+      vidPlayer.muted = true;
+    }
   }
 
   function durationCalc(duration) {
