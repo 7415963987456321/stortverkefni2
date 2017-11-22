@@ -83,7 +83,6 @@ const Videoplayer = (function() {
     div.appendChild(videoDiv);
 
     div.appendChild(buttonList());
-    vidPlayer.play();
 
     return div;
     }
@@ -92,15 +91,18 @@ const Videoplayer = (function() {
     const buttonList = document.createElement('div');
     buttonList.className = 'buttonList';
 
-  //Play takki
+  //Play takki og eventlistener á videoelement
     const play = document.createElement('button');
-    const playImg = document.createElement('img');
+    this.playImg = document.createElement('img');
     playImg.src = '/img/play.svg';
     playImg.id = 'play';
     play.appendChild(playImg);
     play.id = 'playButton';
 
     play.addEventListener('click', function () {
+      playPause();
+    });
+    vidPlayer.addEventListener('click', function () {
       playPause();
     });
     
@@ -128,7 +130,7 @@ const Videoplayer = (function() {
     
   //Mute takki
     const mute = document.createElement('button');
-    const muteImg = document.createElement('img');
+    this.muteImg = document.createElement('img');
     muteImg.src = '/img/mute.svg';
     mute.appendChild(muteImg);
     mute.id = 'fullscreenButton';
@@ -160,9 +162,11 @@ const Videoplayer = (function() {
 
   function playPause(){
     if (vidPlayer.paused){
-      vidPlayer.play();
+        vidPlayer.play();
+        playImg.src = '/img/play.svg';
       } else {
         vidPlayer.pause();
+        playImg.src = '/img/pause.svg';
       }
   }
 
@@ -187,8 +191,10 @@ const Videoplayer = (function() {
   function muteOnOff(){
     if(vidPlayer.muted){
       vidPlayer.muted = false;
+    muteImg.src = '/img/mute.svg';
     } else {
       vidPlayer.muted = true;
+    muteImg.src = '/img/unmute.svg';
     }
   }
 
