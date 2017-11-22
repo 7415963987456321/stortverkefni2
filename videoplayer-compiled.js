@@ -39,9 +39,12 @@ const Videoplayer = function () {
     container.appendChild(header());
 
     let queryId = parseInt(window.location.search.substring(4));
-    //console.log(data.videos.find(item => item.id === queryId));
 
-    container.appendChild(getVideo(queryId));
+    if (!data.videos.find(item => item.id === queryId)) {
+      handleError();
+    } else {
+      container.appendChild(getVideo(queryId));
+    }
   }
 
   function header() {
@@ -83,6 +86,8 @@ const Videoplayer = function () {
 
     div.appendChild(buttonList());
 
+    playPause();
+    vidPlayer.play();
     return div;
   }
 
@@ -162,10 +167,10 @@ const Videoplayer = function () {
   function playPause() {
     if (vidPlayer.paused) {
       vidPlayer.play();
-      playImg.src = '/img/play.svg';
+      playImg.src = '/img/pause.svg';
     } else {
       vidPlayer.pause();
-      playImg.src = '/img/pause.svg';
+      playImg.src = '/img/play.svg';
     }
   }
 
@@ -203,6 +208,11 @@ const Videoplayer = function () {
     const string = min + " min : " + sec + " sec";
 
     return string;
+  }
+
+  function handleError() {
+    window.alert("Þetta myndskeið er ekki til");
+    history.go(-1);
   }
   return {
     init: init
