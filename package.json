@@ -4,8 +4,8 @@
   "description": "Stórt Verkefni 2",
   "main": "index.js",
   "scripts": {
-    "sass": "node-sass scss/styles.scss styles.css",
-    "browser-sync": "browser-sync start --server --files *.js *.scss *.html index.html",
+    "browser-sync": "browser-sync start --server --files *.js *.scss scss/*.scss *.html index.html",
+    "sass": "node-sass --watch styles.scss styles.css",
     "dev": "npm-run-all --parallel babel babel2 sass browser-sync",
     "lint": "stylelint *.scss scss/*.scss --syntax scss",
     "babel": "babel script.js  --watch --out-file script-compiled.js  --source-maps",
