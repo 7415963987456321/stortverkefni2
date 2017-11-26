@@ -61,7 +61,7 @@ const Myndband = (function() {
     container = document.querySelector('body');
 
     const sec = document.createElement('section');
-    sec.className = 'Category '+title;
+    sec.className = 'Category__'+title;
 
     const h2 = document.createElement('h2');
     h2.appendChild(document.createTextNode(title));
