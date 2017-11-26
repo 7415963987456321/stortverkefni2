@@ -1,0 +1,43 @@
+html { /* stylelint-disable-line */
+  box-sizing: border-box;
+}
+
+*, *:before, *:after { /* stylelint-disable-line */
+  box-sizing: inherit;
+
+  padding: 0;
+  margin: 0;
+}
+
+html { /* stylelint-disable-line */
+  font-family: helvetica, arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background: #2e2e2e;
+  color: #faebd7;
+}
+body{
+  
+}
+
+main { /* stylelint-disable-line */
+  padding: 20px;
+  margin: 0 auto;
+}
+section{
+  padding: 1em;
+}
+h1 { /* stylelint-disable-line */
+  text-align: center;
+}
+
+.Header{
+  font-size: 0.5rem;
+  @media screen and(min-width: 500px){
+    font-size: 1.5rem;
+  }
+}
+
+
+@import "./scss/button";
+@import "./scss/videolist"
