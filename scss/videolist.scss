@@ -24,10 +24,16 @@
   }
 }
 
+.video {
+  text-align: center
+}
+
 p.duration {
   position: absolute;
   right: 0;
-  bottom: 2.5em;
+  bottom: 3.5em;
+  border-radius: 5px;
+  padding: 5px;
   z-index: 2;
   margin: 0.5em;
   background: rgba(0, 0, 0, 0.3);

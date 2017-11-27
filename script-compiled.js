@@ -70,7 +70,7 @@ const Myndband = function a() {
     }
 
     const border = document.createElement('div');
-    border.className = 'border';
+    border.className = 'Border';
     sec.appendChild(border);
   }
 
@@ -103,6 +103,11 @@ const Myndband = function a() {
     div.appendChild(p);
 
     console.log(age(created));
+    const aldur = document.createElement('p');
+    aldur.className = 'age';
+    aldur.appendChild(document.createTextNode(age(created)));
+    div.appendChild(aldur);
+
     return div;
   }
 
@@ -119,13 +124,41 @@ const Myndband = function a() {
     //TODO Klára þetta
     const now = Date.parse(new Date());
     const diff = now - created;
-    console.log(created);
-    const day = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const week = Math.floor(diff / 604800);
-    const month = week % 4;
-    const year = month % 12;
+    var seconds = Math.floor(diff / 1000);
+    var intervalType;
 
-    return day % 30 % 7 + "days " + week % 4 + "weeks " + month % 12 + "months " + year;
+    var munur = Math.floor(seconds / 31536000);
+    if (munur === 1) {
+      intervalType = 'ári';
+    } else if (munur >= 1) {
+      intervalType = 'árum';
+    } else {
+      munur = Math.floor(seconds / 2592000);
+      if (munur === 1) {
+        intervalType = 'mánuði';
+      } else if (munur >= 1) {
+        intervalType = 'mánuðum';
+      } else {
+        munur = Math.floor(seconds / 86400);
+        if (munur === 1) {
+          intervalType = 'degi';
+        } else if (munur >= 1) {
+          intervalType = 'dögum';
+        } else {
+          munur = Math.floor(seconds / 3600);
+          if (munur >= 1) {
+            intervalType = "klst";
+          } else {
+            munur = Math.floor(seconds / 60);
+            if (munur >= 1) {
+              intervalType = "mín";
+            }
+          }
+        }
+      }
+    }
+
+    return 'Fyrir ' + munur + ' ' + intervalType + ' síðan';
   }
   return {
     init
