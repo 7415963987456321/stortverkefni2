@@ -4,11 +4,11 @@
   "description": "Stórt Verkefni 2",
   "main": "index.js",
   "scripts": {
-    "eslint": "eslint --fix script.js videoplayer.js",
+    "eslint": "eslint script.js videoplayer.js",
     "stylelint": "stylelint *.scss scss/*.scss --syntax scss",
     "browser-sync": "browser-sync start --server --files *.js *.scss scss/*.scss *.html index.html",
-    "sass": "node-sass --watch styles.scss styles.css",
-    "dev": "npm-run-all --parallel babel babel2 sass browser-sync",
+    "sass": "node-sass styles.scss styles.css -w",
+    "dev": "npm-run-all --parallel sass babel babel2 browser-sync",
     "lint": "npm-run-all --parallel eslint stylelint",
     "babel": "babel script.js  --watch --out-file script-compiled.js  --source-maps",
     "babel2": "babel videoplayer.js --watch --out-file videoplayer-compiled.js --source-maps"

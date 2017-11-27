@@ -68,6 +68,10 @@ const Myndband = function a() {
       const videolist = document.querySelectorAll('.Videolist')[i];
       videolist.appendChild(Videos(videos[z]));
     }
+
+    const border = document.createElement('div');
+    border.className = 'border';
+    sec.appendChild(border);
   }
 
   function Videos(id) {

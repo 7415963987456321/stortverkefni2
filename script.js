@@ -68,6 +68,10 @@ const Myndband = (function a() {
       const videolist = document.querySelectorAll('.Videolist')[i];
       videolist.appendChild(Videos(videos[z]));
     }
+
+    const border = document.createElement('div');
+    border.className = 'border';
+    sec.appendChild(border);
   }
 
   function Videos(id) {
@@ -97,7 +101,6 @@ const Myndband = (function a() {
     p.className = 'duration';
     p.appendChild(document.createTextNode(duration));
     div.appendChild(p);
-
 
     console.log(age(created))
     return div;

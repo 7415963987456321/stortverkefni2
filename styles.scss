@@ -38,6 +38,12 @@ h1 { /* stylelint-disable-line */
   }
 }
 
-
+.border {
+    border-bottom: 1px #faebd7;
+    border-bottom-style: inset;
+    padding-bottom: 1em;
+    width: 80%;
+    margin: auto;
+}
 @import "./scss/button";
 @import "./scss/videolist"

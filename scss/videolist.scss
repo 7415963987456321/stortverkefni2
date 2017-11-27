@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  padding-bottom: 2em;
   @media screen and(max-width: 965px){
   align-self: center;
   	flex-direction: column;

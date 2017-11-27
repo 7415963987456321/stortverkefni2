@@ -70,8 +70,8 @@ const Videoplayer = function a() {
 
     div.appendChild(buttonList());
 
-    this.vidPlayer.play();
     playPause();
+    this.vidPlayer.play();
     return div;
   }
 
@@ -181,7 +181,6 @@ const Videoplayer = function a() {
   }
 
   function fullscreenReq() {
-    const vidPlayer = this;
     if (vidPlayer.webkitRequestFullscreen) {
       vidPlayer.webkitRequestFullscreen();
     } else if (vidPlayer.mozRequestFullScreen) {
@@ -192,7 +191,6 @@ const Videoplayer = function a() {
   }
 
   function muteOnOff() {
-    const vidPlayer = this;
     if (vidPlayer.muted) {
       vidPlayer.muted = false;
       muteImg.src = '/img/mute.svg';
