@@ -4,10 +4,12 @@
   "description": "Stórt Verkefni 2",
   "main": "index.js",
   "scripts": {
+    "eslint": "eslint --fix script.js videoplayer.js",
+    "stylelint": "stylelint *.scss scss/*.scss --syntax scss",
     "browser-sync": "browser-sync start --server --files *.js *.scss scss/*.scss *.html index.html",
     "sass": "node-sass --watch styles.scss styles.css",
     "dev": "npm-run-all --parallel babel babel2 sass browser-sync",
-    "lint": "stylelint *.scss scss/*.scss --syntax scss",
+    "lint": "npm-run-all --parallel eslint stylelint",
     "babel": "babel script.js  --watch --out-file script-compiled.js  --source-maps",
     "babel2": "babel videoplayer.js --watch --out-file videoplayer-compiled.js --source-maps"
   },
@@ -23,20 +25,23 @@
     "hlg29",
     "hrs70"
   ],
-  "author": "hrs70 dfb2 gudmundur hlg29",
+  "author": "hrs70",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.2",
     "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.18.13",
+    "stylelint-config-primer": "^2.2.2",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.8.0",
     "npm-run-all": "^4.1.1",
     "stylelint": "^8.2.0",
     "stylelint-order": "^0.7.0"
   },
   "dependencies": {
     "babel": "^6.23.0",
-    "node-sass": "^4.5.3",
-    "stylelint-config-primer": "^2.1.0"
+    "eslint": "^4.9.0",
+    "node-sass": "^4.5.3"
   }
 }

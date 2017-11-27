@@ -1,24 +1,14 @@
-const API_URL = '/videos.json';
 const url = '/videos.json?id=';
 
-document.addEventListener('DOMContentLoaded', function () {
-  const body = document.querySelector('body');
-  Myndband.init(body);
-});
-
-const Myndband = function () {
+const Myndband = function a() {
   let container;
-  function init(body) {
-    container = body.querySelector('body');
-    fetchData();
-  }
 
   function fetchData(id) {
     const request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-      if (this.readyState == XMLHttpRequest.DONE) {
+    request.onreadystatechange = function b() {
+      if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status >= 400) {
-          error('Villa kom upp');
+          console.log('Villa kom upp');
         } else {
           const data = JSON.parse(request.responseText);
           constructor(data);
@@ -26,13 +16,17 @@ const Myndband = function () {
       }
     };
 
-    request.onerror = function () {
-      error('Óþekkt villa');
+    request.onerror = function c() {
+      console.log('Óþekkt villa');
     };
     request.open('GET', url + id, true);
     request.send();
   }
 
+  function init(body) {
+    container = body.querySelector('body');
+    fetchData();
+  }
   function constructor(data) {
     container = document.querySelector('body');
     this.dataSet = data;
@@ -58,7 +52,7 @@ const Myndband = function () {
     container = document.querySelector('body');
 
     const sec = document.createElement('section');
-    sec.className = 'Category ' + title;
+    sec.className = `Category ${title}`;
 
     const h2 = document.createElement('h2');
     h2.appendChild(document.createTextNode(title));
@@ -71,22 +65,23 @@ const Myndband = function () {
     container.appendChild(sec);
 
     for (let z = 0; z < videos.length; z++) {
-      videolist = document.querySelectorAll('.Videolist')[i];
+      const videolist = document.querySelectorAll('.Videolist')[i];
       videolist.appendChild(Videos(videos[z]));
     }
   }
 
   function Videos(id) {
-    const title = dataSet.videos[id - 1].title;
-    const poster = dataSet.videos[id - 1].poster;
-    const videoURL = dataSet.videos[id - 1].video;
+    const title = this.dataSet.videos[id - 1].title;
+    const poster = this.dataSet.videos[id - 1].poster;
+    const videoURL = this.dataSet.videos[id - 1].video;
     const duration = durationCalc(dataSet.videos[id - 1].duration);
+    const created = this.dataSet.videos[id - 1].created;
 
     const div = document.createElement('div');
     div.className = 'Video';
 
     const a = document.createElement('a');
-    a.setAttribute('href', "video.html?id=" + id);
+    a.setAttribute('href', `video.html?id=${id}`);
     div.appendChild(a);
 
     const img = document.createElement('img');
@@ -103,19 +98,39 @@ const Myndband = function () {
     p.appendChild(document.createTextNode(duration));
     div.appendChild(p);
 
+    console.log(age(created));
     return div;
   }
 
   function durationCalc(duration) {
     const sec = Math.floor(duration % 60);
     const min = Math.floor(duration / 60);
-    const string = min + " min : " + sec + " sec";
+    const secZero = (sec < 10 ? "0" : "") + sec;
+    const string = `${min}:${secZero} `;
 
     return string;
   }
+
+  function age(created) {
+    //TODO Klára þetta
+    const now = Date.parse(new Date());
+    const diff = now - created;
+    console.log(created);
+    const day = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const week = Math.floor(diff / 604800);
+    const month = week % 4;
+    const year = month % 12;
+
+    return day % 30 % 7 + "days " + week % 4 + "weeks " + month % 12 + "months " + year;
+  }
   return {
-    init: init
+    init
   };
 }();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.querySelector('body');
+  Myndband.init(body);
+});
 
 //# sourceMappingURL=script-compiled.js.map
