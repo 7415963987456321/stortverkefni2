@@ -70,7 +70,7 @@ const Myndband = (function a() {
     }
 
     const border = document.createElement('div');
-    border.className = 'border';
+    border.className = 'Border';
     sec.appendChild(border);
   }
 

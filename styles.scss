@@ -13,37 +13,35 @@ html { /* stylelint-disable-line */
   font-family: helvetica, arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  background: #2e2e2e;
   color: #faebd7;
-}
-body{
-  
+  background: #2e2e2e;
 }
 
 main { /* stylelint-disable-line */
   padding: 20px;
   margin: 0 auto;
 }
-section{
+section { /* stylelint-disable-line */
   padding: 1em;
 }
 h1 { /* stylelint-disable-line */
   text-align: center;
 }
 
-.Header{
+.Header {
   font-size: 0.5rem;
-  @media screen and(min-width: 500px){
+  @media screen and(min-width: 500px) {
     font-size: 1.5rem;
   }
 }
 
-.border {
-    border-bottom: 1px #faebd7;
-    border-bottom-style: inset;
-    padding-bottom: 1em;
-    width: 80%;
-    margin: auto;
+.Border {
+  width: 80%;
+  padding-bottom: 1em;
+  margin: auto;
+  border-bottom: 1px #faebd7;
+  border-bottom-style: inset;
 }
+
 @import "./scss/button";
 @import "./scss/videolist"

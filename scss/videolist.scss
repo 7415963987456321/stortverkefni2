@@ -1,49 +1,46 @@
-.Videolist{	
+.Videolist {
   display: flex;
+  padding-bottom: 2em;
   flex-wrap: wrap;
   flex-direction: row;
-  padding-bottom: 2em;
-  @media screen and(max-width: 965px){
-  align-self: center;
-  	flex-direction: column;
+  @media screen and (max-width: 965px) {
+    align-self: center;
+    flex-direction: column;
   }
 }
-.Video{
-  width: 28em;
+
+.Video {
   position: relative;
-  white-space: nowrap;
-  align-self: center;
+  width: 28em;
   height: auto;
   margin-top: 1.25em;
   margin-right: 0.375em;
   margin-bottom: 1.25em;
   margin-left: 0.875em;
-  @media screen and(max-width: 500px){
-  	max-width: 100%;
+  white-space: nowrap;
+  align-self: center;
+  @media screen and (max-width: 500px) {
+    max-width: 100%;
   }
 }
 
-p.duration{
+p.duration {
   position: absolute;
-  bottom: 2.5em;
-  margin: 0.5em;
   right: 0;
+  bottom: 2.5em;
   z-index: 2;
+  margin: 0.5em;
   background: rgba(0, 0, 0, 0.3);
 }
-.videoTitle{
-	overflow: hidden;
-}
-.videoPlayer{
 
+.videoTitle {
+  overflow: hidden;
 }
-img{
+
+img {
   position: relative;
   z-index: 2;
   width: 28em;
   max-width: 100%;
   cursor: pointer;
-  @media screen and(min-width: 965px){
-  	
-  }
 }
