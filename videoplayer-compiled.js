@@ -51,6 +51,14 @@ const Videoplayer = function a() {
     const div = document.createElement('div');
     div.className = 'video';
 
+    const divOverlay = document.createElement('div');
+    divOverlay.className = 'overlay';
+
+    this.playImg = document.createElement('img');
+    this.playImg.src = '/img/play.svg';
+    divOverlay.appendChild(playImg);
+    div.appendChild(divOverlay);
+
     const titill = document.createElement('div');
     titill.className = 'videoTitle';
     div.appendChild(titill);
@@ -81,8 +89,6 @@ const Videoplayer = function a() {
 
     // Play takki og eventlistener á videoelement
     const play = document.createElement('button');
-    this.playImg = document.createElement('img');
-    this.playImg.src = '/img/play.svg';
     this.playImg.id = 'play';
     play.appendChild(playImg);
     play.id = 'playButton';
@@ -138,12 +144,25 @@ const Videoplayer = function a() {
       backwardSeek();
     });
 
+    // Til baka takki
+    const goback = document.createElement('button');
+    const textgoback = document.createTextNode('Til baka');
+    goback.appendChild(textgoback);
+
+    goback.addEventListener('click', () => {
+
+      window.history.go(-1);
+
+    });
+
+
     // Append á container
     buttonList.appendChild(backward);
     buttonList.appendChild(play);
     buttonList.appendChild(fullscreen);
     buttonList.appendChild(mute);
     buttonList.appendChild(forward);
+    buttonList.appendChild(goback);
 
     return buttonList;
   }
@@ -166,9 +185,11 @@ const Videoplayer = function a() {
     if (vidPlayer.paused) {
       this.vidPlayer.play();
       playImg.src = '/img/pause.svg';
+      //document.querySelector('divOverlay').style.display = 'hidden';
     } else {
       this.vidPlayer.pause();
       playImg.src = '/img/play.svg';
+      //document.querySelector('divOverlay').style.display = 'block';
     }
   }
 
