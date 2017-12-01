@@ -54,11 +54,11 @@ const Videoplayer = function a() {
     const divOverlay = document.createElement('div');
     divOverlay.className = 'overlay';
 
-    this.playImg = document.createElement('img');
-    this.playImg.src = '/img/play.svg';
-    divOverlay.appendChild(playImg);
+    this.overlayImg = document.createElement('img');
+    this.overlayImg.src = '/img/play.svg';
 
-    //Komment
+    divOverlay.appendChild(overlayImg);
+    div.appendChild(divOverlay);
 
     const titill = document.createElement('div');
     titill.className = 'videoTitle';
@@ -90,6 +90,7 @@ const Videoplayer = function a() {
 
     // Play takki og eventlistener á videoelement
     const play = document.createElement('button');
+
     this.playImg = document.createElement('img');
     this.playImg.src = '/img/play.svg';
     this.playImg.id = 'play';
@@ -153,9 +154,7 @@ const Videoplayer = function a() {
     goback.appendChild(textgoback);
 
     goback.addEventListener('click', () => {
-
       window.history.go(-1);
-
     });
 
     // Append á container
@@ -187,11 +186,11 @@ const Videoplayer = function a() {
     if (vidPlayer.paused) {
       this.vidPlayer.play();
       playImg.src = '/img/pause.svg';
-      //document.querySelector('divOverlay').style.display = 'hidden';
+      overlayImg.className = 'hidden';
     } else {
       this.vidPlayer.pause();
       playImg.src = '/img/play.svg';
-      //document.querySelector('divOverlay').style.display = 'block';
+      overlayImg.className = '';
     }
   }
 

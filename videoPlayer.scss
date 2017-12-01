@@ -34,5 +34,7 @@ main { /* stylelint-disable-line */
 .video{
 	
 }
-
+.hidden{
+  visibility: hidden;
+}
 @import "./scss/button";

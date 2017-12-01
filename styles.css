@@ -35,6 +35,9 @@ h1 {
     .Header {
       font-size: 1.5rem; } }
 
+.hidden {
+  visibility: hidden; }
+
 .Border {
   width: 80%;
   padding-bottom: 1em;

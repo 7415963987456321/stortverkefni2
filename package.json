@@ -7,7 +7,7 @@
     "eslint": "eslint script.js videoplayer.js",
     "stylelint": "stylelint *.scss scss/*.scss --syntax scss",
     "browser-sync": "browser-sync start --server --files *.js *.scss scss/*.scss *.html index.html",
-    "sass": "node-sass styles.scss styles.css -w",
+    "sass": "node-sass styles.scss styles.css",
     "dev": "npm-run-all --parallel sass babel babel2 browser-sync",
     "lint": "npm-run-all --parallel eslint stylelint",
     "babel": "babel script.js  --watch --out-file script-compiled.js  --source-maps",
