@@ -1,6 +1,4 @@
 node_modules
-/script-compiled.js
-/script-compiled.js.map
-/videoplayer-compiled.js
-/videoplayer-compiled.js.map
+script-compiled.js
+script-compiled.js.map
 
